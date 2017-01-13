@@ -10,7 +10,7 @@ import java.util.List;
 public class DBUtils {
 
     private static Connection getConnection(){
-        String connectionUrl = "jdbc:mysql://localhost:3307/testing";
+        String connectionUrl = "jdbc:mysql://localhost:3306/testing";
         Connection connection = null;
 
         try {
