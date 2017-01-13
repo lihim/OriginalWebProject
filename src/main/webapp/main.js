@@ -20,14 +20,13 @@ $(document).ready(function(){
            success: function(data, textStatus, jqXHR){
                console.log("in success");
                if(data.success){
+
                    $("#ajaxResponse").html("");
-                   $("#ajaxResponse").append("<b>item: </b>" + data.item);
-                 //  $("#ajaxResponse").append("<b>price: </b>" + data.price);
+                   $("#ajaxResponse").append( setItemTable(data) );
                }
                else{
                    $("#ajaxResponse").html("<div><b>item is invalid!</b></div>");
                }
-
            },
 
            error: function(jqXHR, textStatus, errorThrown){
@@ -37,7 +36,7 @@ $(document).ready(function(){
 
            beforeSend: function (jqXHR, settings) {
                console.log("in before");
-               settings.data += "$dummyData = whatever";
+               settings.data /*+= "$dummyData = whatever"*/;
                $('#add-button').attr("disabled", true);
                console.log("end before Send");
 
@@ -50,6 +49,20 @@ $(document).ready(function(){
 
        })
     });
+
+    function setItemTable(data) {
+        var txt = "";
+        txt += "<table border='1' class = scrollit>";
+        txt += "<thead class='tablehead'><tr><th>Item</th></tr></thead>";
+        txt += "<tbody class='tablebody'>"
+        for(var i = 0 ; i < data.itemsInfo.length ; i++){
+            txt += "<tr><td>" + data.itemsInfo[i] + "</td></tr>";
+        }
+        txt += "</tbody></table>"
+        return txt;
+
+    }
+
 
 });
 

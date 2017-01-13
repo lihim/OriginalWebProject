@@ -54,12 +54,34 @@ public class ItemInformation extends HttpServlet {
 
 
         String itemCode = request.getParameter("itemCode");
+      //  PrintWriter out = response.getWriter();
         try {
             DBUtils.insertIntoItems(itemCode);
-            response.getWriter().print("{}");
+
         } catch (Exception e) {
             e.printStackTrace();
 
         }
+        List<String> itemsList = DBUtils.getAllItems();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(itemsList);
+        JsonObject myObj = new JsonObject();
+        JsonElement jsonItems = gson.toJsonTree(itemsList);
+        myObj.addProperty("success", true);
+//        for(String item : itemsList){
+//            if(item.contains("aaa")){
+//                myObj.addProperty("success", false);
+//                break;
+//            }
+//            else {
+//                Item newItem = new Item();
+//                newItem.setItem(item);
+//            }
+//        }
+        myObj.add("itemsInfo", jsonItems);
+
+        response.getWriter().print(myObj.toString());
+     //   out.close();
     }
 }

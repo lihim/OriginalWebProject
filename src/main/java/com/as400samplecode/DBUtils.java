@@ -1,5 +1,10 @@
 package com.as400samplecode;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import sun.security.jgss.GSSCaller;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +100,7 @@ public class DBUtils {
 
                 itemsStrings.add(i, item);
             }
+
 
             stmt.close();
             stmt = null;
