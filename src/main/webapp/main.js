@@ -21,7 +21,7 @@ $(document).ready(function(){
        $.ajax({
            type: "POST",
            url: "ItemInformation",
-           data: dataString,
+           data: item,
            dataType: "json",
            success: function(data, textStatus, jqXHR){
                console.log("in success");

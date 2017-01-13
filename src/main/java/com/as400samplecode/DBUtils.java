@@ -29,6 +29,59 @@ public class DBUtils {
     }
 
 
+    public static void insertIntoItems(Item item) throws Exception{
+
+
+        String sql = null;
+        PreparedStatement stmt=null;
+        Connection conn=null;
+        try {
+
+            conn = getConnection();
+
+            sql = "insert into items (item) values (?, ?, ?, ?)";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, item.getDate().trim());
+            stmt.setString(2, item.getStore().trim());
+            stmt.setString(3, item.getTransaction_amount().trim());
+            stmt.setString(4, item.getNumber_of_payments().trim());
+            stmt.execute();
+
+            stmt.close();
+            stmt = null;
+
+            conn.close();
+            conn = null;
+
+        }
+        catch(Exception e){System.out.println(e);}
+
+        finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlex) {
+                    // ignore -- as we can't do anything about it here
+                }
+
+                stmt = null;
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException sqlex) {
+                    // ignore -- as we can't do anything about it here
+                }
+
+                conn = null;
+            }
+        }
+
+
+    }
+
 
     public static void insertIntoItems(String item) throws Exception{
 

@@ -16,8 +16,9 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.Arrays;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by lihi martin on 1/1/2017.
@@ -52,11 +53,25 @@ public class ItemInformation extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String date = request.getParameter("add-date");
+        String store = request.getParameter("itemCode");
+        String transection_amount = request.getParameter("transaction_amount");
+        String numberOfPayments = request.getParameter("number_of_payments");
+        //java.util.Date dateConvertor = null;
 
-        String itemCode = request.getParameter("itemCode");
+//        try {
+//            dateConvertor = formatter.parse(date);
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
+        Item item = new Item(date, store, transection_amount, numberOfPayments);
+
       //  PrintWriter out = response.getWriter();
         try {
-            DBUtils.insertIntoItems(itemCode);
+            DBUtils.insertIntoItems(item);
 
         } catch (Exception e) {
             e.printStackTrace();
