@@ -1,0 +1,22 @@
+.scrollit {
+    overflow:auto;
+    height:300px;
+}
+
+.tablehead{
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+}
+
+.tablebody{
+    height: 300px;
+    display: inline-block;
+    width: 100%;
+    overflow: auto;
+}
+
+td, th{
+    width: 150px;
+    display: inline-block;
+}
