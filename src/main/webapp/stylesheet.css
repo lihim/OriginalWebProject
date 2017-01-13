@@ -1,7 +1,8 @@
-.scrollit {
-    overflow:auto;
+/*.scrollit {
+
     height:300px;
-}
+    overflow:auto;!**!
+}*/
 
 .tablehead{
     display: inline-block;
@@ -18,5 +19,39 @@
 
 td, th{
     width: 150px;
+    align-content: flex-start;
     display: inline-block;
+
 }
+/*#card-details-table{
+    width: 150px;
+    align-content: flex-start;
+    display: inline-block;
+
+}*/
+
+.input-field input{
+    float:left;
+    margin-outside: 10px;
+}
+
+
+.test {
+    width: 800px;
+    text-align: left;
+
+}
+/*#input-table{
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}*/
+input.number, lable.number{
+    width: 20px;
+}
+
+td.input, th.input{
+    width:200px;
+}
+
+

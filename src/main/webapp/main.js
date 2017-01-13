@@ -8,9 +8,15 @@ $(document).ready(function(){
     $("#add-button").click(function(e){
        dataString = $("#card-form").serialize();
 
-       var itemCode = $("input#itemCode").val();
-       //var price = $("#input#price").val();
-       dataString = "itemCode=" + itemCode;
+       var item = {
+           date : $("input#add-date").val(),
+           itemCode : $("input#itemCode").val(),
+           transaction_amount : $("input#transaction_amount").val(),
+           num_of_payments : $("input#number_of_payments").val()
+        }
+
+
+       dataString = "itemCode=" + item.toString();
 
        $.ajax({
            type: "POST",
@@ -52,9 +58,9 @@ $(document).ready(function(){
 
     function setItemTable(data) {
         var txt = "";
-        txt += "<table border='1' class = scrollit>";
-        txt += "<thead class='tablehead'><tr><th>Item</th></tr></thead>";
-        txt += "<tbody class='tablebody'>"
+        txt += "<table id = card-details-table border='1' <!--class = scrollit-->>";
+        txt += "<thead class = tablehead><tr><th>Item</th></tr></thead>";
+        txt += "<tbody class = tablebody >"
         for(var i = 0 ; i < data.itemsInfo.length ; i++){
             txt += "<tr><td>" + data.itemsInfo[i] + "</td></tr>";
         }

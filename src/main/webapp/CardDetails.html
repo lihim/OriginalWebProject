@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:border-collapse="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml"
+      xmlns:text-align="http://www.w3.org/1999/xhtml" xmlns:style="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>CardDetails</title>
@@ -15,16 +16,45 @@
 <body>
 <form id = "card-form">
 
-    <fieldset>
-        <legend>testing</legend>
-        <p>
-            <label for = "itemCode"> item:</label>
-            <input id = "itemCode" type = "text" name = "itemCode"/>
-        </p>
-        <p>
-            <input id = "add-button" type = "button" value = "Submit"/>
-        </p>
-    </fieldset>
+    <!--<fieldset >-->
+        <!--<legend>testing</legend>-->
+        <table id = "input-table"> <!--class = "test" border = "1"-->>
+             <tr class = "test">
+                <th class = "input"><label for = "add-date" >date:</label></th>
+                <th class = "input"><label for = "itemCode"> store:</label></th>
+                <th class = "input"><label for = "transaction_amount" class="number"> transaction amount:</label></th>
+                 <th class = "input"><label for = "number_of_payments" class="number">number of payments:</label></th>
+                 <th class = "input"><label for = "debit_amount" class="number">debit amount:</label></th>
+                 <th ><label for = "additional_number_of_payments" class="number">additional number of payments:</label></th>
+            </tr>
+
+            <tr>
+                <td class = "input">
+                    <input id = "add-date"  type = "date" name = "add-date"/>
+                </td>
+                <td class = "input">
+                    <input id = "itemCode" type = "text" name = "itemCode"/>
+                </td>
+                <td class = "input" >
+                    <input id = "transaction_amount" class = number type = "text" name = "transaction_amount"/>
+                </td>
+                <td class = "input"  >
+                <input id = "number_of_payments" class = number type = "text" name = "number_of_payments"/>
+            </td>
+                <td class = "input"  >
+                    <input id = "debit_amount" class = number type = "text" name = "debit_amount"/>
+                </td>
+                <td class = "input"  >
+                    <input id = "additional_number_of_payments" class = number type = "text" name = "additional_number_of_payments"/>
+                </td>
+            </tr>
+        </table>
+
+    <!--</fieldset>-->
+    <p>
+
+        <input id = "add-button" type = "button" value = "Submit"/>
+    </p>
 </form>
         <!--<tr>-->
             <!--<td >item : <input type = text id = "item"></td>-->
@@ -42,7 +72,7 @@
             <!--<th class = "table">price</th>-->
         <!--</tr>-->
     <!--</table>-->
-<div id = "ajaxResponse" <!--class="scrollit"-->>
+<div id = "ajaxResponse" ><!--class="scrollit"-->>
     <!--<fieldset>-->
     <!--<legend>-->
     <!--<table id = "ajaxResponse" border = '1'>-->
