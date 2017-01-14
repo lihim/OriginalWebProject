@@ -1,4 +1,5 @@
 import com.as400samplecode.DBUtils;
+import com.as400samplecode.Item;
 import org.junit.Test;
 
 import java.util.List;
@@ -21,10 +22,13 @@ public class DaoTest {
     @Test
     public void testGetAllItems() throws Exception {
 
-        List<String> itemsStrings =  DBUtils.getAllItems();
+        List<Item> itemsStrings =  DBUtils.getAllItems();
 
-        for(String item : itemsStrings){
-            System.out.println(item);
+        for(Item item : itemsStrings){
+            System.out.println(item.getDate());
+            System.out.println(item.getStore());
+            System.out.println(item.getTransaction_amount());
+            System.out.println(item.getNumber_of_payments());
         }
 
 

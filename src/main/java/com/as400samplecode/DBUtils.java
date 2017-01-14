@@ -39,7 +39,7 @@ public class DBUtils {
 
             conn = getConnection();
 
-            sql = "insert into items (item) values (?, ?, ?, ?)";
+            sql = "insert into items (date, store, transaction_amount, number_of_payments) values (?, ?, ?, ?)";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, item.getDate().trim());
             stmt.setString(2, item.getStore().trim());
@@ -134,11 +134,11 @@ public class DBUtils {
     }
 
 
-    public static List<String> getAllItems() {
+    public static List<Item> getAllItems() {
         String sql = null;
         PreparedStatement stmt=null;
         Connection conn=null;
-        List<String> itemsStrings  = new ArrayList<String>();
+        List<Item> itemsStrings  = new ArrayList<Item>();
 
         try {
 
@@ -149,7 +149,12 @@ public class DBUtils {
             ResultSet resultSet = stmt.executeQuery();
 
             for( int i = 0 ;resultSet.next(); i++) {
-                String item= resultSet.getString("item");
+                Item item= new Item(
+                        resultSet.getString("date"),
+                        resultSet.getString("store"),
+                        resultSet.getString("transaction_amount"),
+                        resultSet.getString("number_of_payments")
+                        );
 
                 itemsStrings.add(i, item);
             }

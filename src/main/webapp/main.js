@@ -1,3 +1,29 @@
+function updateSubmit(){
+    if ($('#dateCode').val().length>0 &&$(' #itemCode').val().length>0 &&
+        $('#transaction_amount').val().length >0 && $('#number_of_payments' ).val().length > 0) {
+        $("#add-button").removeAttr('disabled');
+    }
+    else {
+        $('#add-button').prop("disabled", true);
+    }
+};
+
+$(document).ready(function (){
+    updateSubmit();
+    $('#dateCode, #itemCode, #transaction_amount, #number_of_payments').on('change',function(){
+        updateSubmit();
+    });
+});
+
+$(document).ready(function() {
+    $.get("ItemInformation", function(data, status){
+        var myObj = JSON.parse(data);
+        var txt = setItemTable(myObj);
+        $('#ajaxResponse').html(txt);
+
+    });
+});
+
 $(document).ready(function(){
     console.log("test")
 
@@ -9,10 +35,10 @@ $(document).ready(function(){
        dataString = $("#card-form").serialize();
 
        var item = {
-           date : $("input#add-date").val(),
+           dateCode : $("input#dateCode").val(),
            itemCode : $("input#itemCode").val(),
            transaction_amount : $("input#transaction_amount").val(),
-           num_of_payments : $("input#number_of_payments").val()
+           number_of_payments : $("input#number_of_payments").val()
         }
 
 
@@ -55,25 +81,47 @@ $(document).ready(function(){
 
        })
     });
-
-    function setItemTable(data) {
-        var txt = "";
-        txt += "<table id = card-details-table border='1' <!--class = scrollit-->>";
-        txt += "<thead class = tablehead><tr><th>Item</th></tr></thead>";
-        txt += "<tbody class = tablebody >"
-        for(var i = 0 ; i < data.itemsInfo.length ; i++){
-            txt += "<tr><td>" + data.itemsInfo[i] + "</td></tr>";
-        }
-        txt += "</tbody></table>"
-        return txt;
-
-    }
-
-
 });
 
+function setItemTable(data) {
+    var txt = "";
+    txt += "<table id = card-details-table border = '1' <!--class = scrollit-->>";
+    txt += "<thead class = tablehead><tr>" +
+        "<th>Date</th>" +
+        "<th>Store</th>" +
+        "<th>Transaction Amount</th>" +
+        "<th>Number of Payments</th>" +
+        "<th>Debit Amount</th>" +
+        "<th>Additional Payments</th>" +
+        "</tr></thead>";
+    txt += "<tbody class = tablebody >"
+    for(var i = 0 ; i < data.itemsInfo.length ; i++){
+        txt += "<tr><td>" + data.itemsInfo[i].date + "</td>";
+        txt += "<td>" + data.itemsInfo[i].store + "</td>";
+        txt += "<td>" + data.itemsInfo[i].transaction_amount + "</td>";
+        txt += "<td>" + data.itemsInfo[i].number_of_payments + "</td>";
+        txt += "<td >" + calculateDebitAmount(data.itemsInfo[i].transaction_amount,data.itemsInfo[i].number_of_payments) +"</td>";
+        txt += "<td >" + calculateAdditionalPayments(data.itemsInfo[i].date,data.itemsInfo[i].number_of_payments) +"</td></tr>";
+
+    }
+    txt += "</tbody></table>"
+    return txt;
+
+}
 
 
+function calculateDebitAmount(transactionAmount, numberOfPayments){
+    return (transactionAmount/numberOfPayments).toFixed(3);
+}
+
+function calculateAdditionalPayments(date, numberOfPayments){
+    var transactionDate = new Date(date);
+    var transactionMonth = transactionDate.getMonth();
+    var today = new Date();
+    var todayMonth = today.getMonth();
+
+    return numberOfPayments - Math.abs(todayMonth - transactionMonth);
+}
 
 // $(function () {
 //     var $orders = $('#orders');

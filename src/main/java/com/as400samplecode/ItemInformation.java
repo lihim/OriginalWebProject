@@ -34,9 +34,17 @@ public class ItemInformation extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<String> allItems = DBUtils.getAllItems();
+            List<Item> allItems = DBUtils.getAllItems();
+            Gson gson = new Gson();
+            String json = gson.toJson(allItems);
+            JsonObject myObj = new JsonObject();
+            JsonElement jsonItems = gson.toJsonTree(allItems);
+            myObj.addProperty("success", true);
 
-            response.getWriter().print(Arrays.asList(allItems));
+            myObj.add("itemsInfo", jsonItems);
+
+            response.getWriter().print(myObj.toString());
+
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -54,7 +62,7 @@ public class ItemInformation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String date = request.getParameter("add-date");
+        String date = request.getParameter("dateCode");
         String store = request.getParameter("itemCode");
         String transection_amount = request.getParameter("transaction_amount");
         String numberOfPayments = request.getParameter("number_of_payments");
@@ -77,26 +85,17 @@ public class ItemInformation extends HttpServlet {
             e.printStackTrace();
 
         }
-        List<String> itemsList = DBUtils.getAllItems();
+        List<Item> itemsList = DBUtils.getAllItems();
 
         Gson gson = new Gson();
         String json = gson.toJson(itemsList);
         JsonObject myObj = new JsonObject();
         JsonElement jsonItems = gson.toJsonTree(itemsList);
         myObj.addProperty("success", true);
-//        for(String item : itemsList){
-//            if(item.contains("aaa")){
-//                myObj.addProperty("success", false);
-//                break;
-//            }
-//            else {
-//                Item newItem = new Item();
-//                newItem.setItem(item);
-//            }
-//        }
+
         myObj.add("itemsInfo", jsonItems);
 
         response.getWriter().print(myObj.toString());
-     //   out.close();
+
     }
 }

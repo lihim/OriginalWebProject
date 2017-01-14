@@ -15,22 +15,17 @@
 </head>
 <body>
 <form id = "card-form">
-
-    <!--<fieldset >-->
-        <!--<legend>testing</legend>-->
-        <table id = "input-table"> <!--class = "test" border = "1"-->>
+        <table id = "input-table">
              <tr class = "test">
-                <th class = "input"><label for = "add-date" >date:</label></th>
+                <th class = "input"><label for = "dateCode" >date:</label></th>
                 <th class = "input"><label for = "itemCode"> store:</label></th>
                 <th class = "input"><label for = "transaction_amount" class="number"> transaction amount:</label></th>
                  <th class = "input"><label for = "number_of_payments" class="number">number of payments:</label></th>
-                 <th class = "input"><label for = "debit_amount" class="number">debit amount:</label></th>
-                 <th ><label for = "additional_number_of_payments" class="number">additional number of payments:</label></th>
             </tr>
 
             <tr>
                 <td class = "input">
-                    <input id = "add-date"  type = "text" name = "add-date"/>
+                    <input id = "dateCode"  type = "date" name = "dateCode"/>
                 </td>
                 <td class = "input">
                     <input id = "itemCode" type = "text" name = "itemCode"/>
@@ -40,57 +35,13 @@
                 </td>
                 <td class = "input"  >
                 <input id = "number_of_payments" class = number type = "text" name = "number_of_payments"/>
-            </td>
-                <td class = "input"  >
-                    <input id = "debit_amount" class = number type = "text" name = "debit_amount"/>
-                </td>
-                <td class = "input"  >
-                    <input id = "additional_number_of_payments" class = number type = "text" name = "additional_number_of_payments"/>
-                </td>
+
             </tr>
         </table>
-
-    <!--</fieldset>-->
     <p>
-
         <input id = "add-button" type = "button" value = "Submit"/>
     </p>
 </form>
-        <!--<tr>-->
-            <!--<td >item : <input type = text id = "item"></td>-->
-            <!--<td>price : <input type = text id = "price"></td>-->
-            <!--<input id = "add-button" type = "button" value = "Submit"/>-->
-            <!--&lt;!&ndash;<td><button id = "add-button">Add</button></td>&ndash;&gt;-->
-        <!--</tr>-->
-
-    <!--</table>-->
-    <!--<br>-->
-
-    <!--<table>-->
-        <!--<tr>-->
-            <!--<th class = "table">item</th>-->
-            <!--<th class = "table">price</th>-->
-        <!--</tr>-->
-    <!--</table>-->
-<div id = "ajaxResponse" ><!--class="scrollit"-->>
-    <!--<fieldset>-->
-    <!--<legend>-->
-    <!--<table id = "ajaxResponse" border = '1'>-->
-
-    <!--</table>-->
-    <!--</legend>-->
-    <!--</fieldset>-->
-</div>
-
-<!--<div id = "results" class="scrollit">-->
-    <!--&lt;!&ndash;<fieldset>&ndash;&gt;-->
-        <!--&lt;!&ndash;<legend>&ndash;&gt;-->
-            <!--<table id = "ajaxResponse" border = '1'>-->
-
-            <!--</table>-->
-        <!--&lt;!&ndash;</legend>&ndash;&gt;-->
-    <!--&lt;!&ndash;</fieldset>&ndash;&gt;-->
-<!--</div>-->
-
+<div id = "ajaxResponse" ></div>
 </body>
 </html>
