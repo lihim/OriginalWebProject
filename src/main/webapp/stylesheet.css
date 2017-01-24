@@ -1,8 +1,111 @@
-/*.scrollit {
+
+
+#input-table, th, td{
+     border : 1px solid black;
+     border-collapse: collapse;
+    text-align: left;
+
+ }
+
+td.input{
+    width:50px;
+}
+
+
+.tab-panels ul{
+    margin: 0;
+    padding: 0;
+}
+
+.tab-panels ul li{
+    list-style-type: none;
+    display: inline-block;
+    background: #999;
+    margin: 0;
+    padding: 4px 10px;
+    border-radius: 10px 10px 0 0;
+    color: #fff;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+.tab-panels ul li:hover{
+    color: #fff;
+    background: #666;
+}
+
+.tab-panels ul li.active{
+    color:#fff;
+    background: #666;
+    
+}
+
+.tab-panels .panel{
+    display: none;
+    background: #c9c9c9;
+    padding: 30px;
+    border-radius: 0 0 10px 10px;
+}
+
+.tab-panels .panel.active{
+    display: block;
+}
+
+/*ul.tabs li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+ul.tabs {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}*/
+
+/*
+ul.tabs li a:hover {background-color: #ddd;}
+*/
+
+/*
+ul.tabs li a:focus, .active {background-color: #ccc;}
+*/
+
+/*
+
+ul.tabs li {float: left;}
+
+
+
+!* Change background color of links on hover*!
+
+
+ !* Create an active/current tablink class *!
+
+
+
+
+/*!* Style the tab content *!
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}*/
+
+/*
+!*.scrollit {
 
     height:300px;
     overflow:auto;!**!
-}*/
+}*!
 
 .tablehead{
     display: inline-block;
@@ -23,12 +126,12 @@ td, th{
     display: inline-block;
 
 }
-/*#card-details-table{
+!*#card-details-table{
     width: 150px;
     align-content: flex-start;
     display: inline-block;
 
-}*/
+}*!
 
 .input-field input{
     float:left;
@@ -36,22 +139,16 @@ td, th{
 }
 
 
-.test {
+!*.test {
     width: 800px;
     text-align: left;
 
-}
-/*#input-table{
-    border: 1px solid black;
-    border-collapse: collapse;
 
-}*/
 input.number, lable.number{
     width: 20px;
 }
 
-td.input, th.input{
-    width:200px;
-}
 
 
+
+*/

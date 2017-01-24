@@ -1,5 +1,6 @@
+
 function updateSubmit(){
-    if ($('#dateCode').val().length>0 &&$(' #itemCode').val().length>0 &&
+    if ($('#purchase_date').val().length>0 &&$(' #itemCode').val().length>0 &&
         $('#transaction_amount').val().length >0 && $('#number_of_payments' ).val().length > 0) {
         $("#add-button").removeAttr('disabled');
     }
@@ -8,41 +9,40 @@ function updateSubmit(){
     }
 };
 
+//disabling submit button until all fields are entered
 $(document).ready(function (){
     updateSubmit();
-    $('#dateCode, #itemCode, #transaction_amount, #number_of_payments').on('change',function(){
+    $('#purchase_date, #itemCode, #transaction_amount, #number_of_payments').on('change',function(){
         updateSubmit();
     });
 });
 
-$(document).ready(function() {
-    $.get("ItemInformation", function(data, status){
+//get all the data from mysql and show it when page is loaded
+/*$(document).ready(function() {
+    $.get("OnLoad", function(data, status){
         var myObj = JSON.parse(data);
         var txt = setItemTable(myObj);
         $('#ajaxResponse').html(txt);
 
     });
-});
+});*/
+
 
 $(document).ready(function(){
-    console.log("test")
 
     $("#card-form").submit(function (e) {
         e.preventDefault();
     });
 
     $("#add-button").click(function(e){
-       dataString = $("#card-form").serialize();
 
        var item = {
-           dateCode : $("input#dateCode").val(),
+           purchase_date : $("input#purchase_date").val(),
            itemCode : $("input#itemCode").val(),
            transaction_amount : $("input#transaction_amount").val(),
-           number_of_payments : $("input#number_of_payments").val()
+           number_of_payments : $("input#number_of_payments").val(),
+           card_name : $("#card_name option:selected").text()
         }
-
-
-       dataString = "itemCode=" + item.toString();
 
        $.ajax({
            type: "POST",
@@ -85,7 +85,7 @@ $(document).ready(function(){
 
 function setItemTable(data) {
     var txt = "";
-    txt += "<table id = card-details-table border = '1' <!--class = scrollit-->>";
+    txt += "<table id = card-details-table  <!--class = scrollit-->";
     txt += "<thead class = tablehead><tr>" +
         "<th>Date</th>" +
         "<th>Store</th>" +
@@ -96,12 +96,12 @@ function setItemTable(data) {
         "</tr></thead>";
     txt += "<tbody class = tablebody >"
     for(var i = 0 ; i < data.itemsInfo.length ; i++){
-        txt += "<tr><td>" + data.itemsInfo[i].date + "</td>";
+        txt += "<tr><td>" + data.itemsInfo[i].purchase_date + "</td>";
         txt += "<td>" + data.itemsInfo[i].store + "</td>";
         txt += "<td>" + data.itemsInfo[i].transaction_amount + "</td>";
         txt += "<td>" + data.itemsInfo[i].number_of_payments + "</td>";
-        txt += "<td >" + calculateDebitAmount(data.itemsInfo[i].transaction_amount,data.itemsInfo[i].number_of_payments) +"</td>";
-        txt += "<td >" + calculateAdditionalPayments(data.itemsInfo[i].date,data.itemsInfo[i].number_of_payments) +"</td></tr>";
+        txt += "<td >" + data.itemsInfo[i].debit_amount +"</td>";
+        txt += "<td >" + data.itemsInfo[i].additional_payments +"</td></tr>";
 
     }
     txt += "</tbody></table>"
@@ -109,8 +109,67 @@ function setItemTable(data) {
 
 }
 
+$(".tablinks").tabs({
+    select: function(event, ui) {
 
-function calculateDebitAmount(transactionAmount, numberOfPayments){
+        $.get("ItemInformation", function (data, status) {
+            var myObj = JSON.parse(data);
+            myObj.set("card_name", this.text);
+            var txt = setItemTable(myObj);
+            $('#ajaxResponse').html(txt);
+
+        });
+    }
+});
+
+/*
+function tableOnClick(cardNAme){
+    $.get("ItemInformation", function(data, status){
+        var myObj = JSON.parse(data);
+        myObj.set("card_name", cardNAme);
+        var txt = setItemTable(myObj);
+        $('#ajaxResponse').html(txt);
+
+    });
+}
+
+$(function() {
+    $("#tab").tabs({"select":function(event,ui){
+        if (ui.index == 1) {
+            $(".hide").switchClass('hide', 'show');
+        } else {
+            $(".show").switchClass("show", "hide");
+        }
+    }});
+});
+*/
+$( function() {
+    $('.tab-panels .tabs li ').click('tabsselected', function(){
+        $('.tab-panels .tabs li.active').removeClass('active');
+
+        $.ajax({
+            type:"GET",
+            url: "ItemInformation",
+            data:$(this).text(),
+            dataType: "json",
+            success: function(data, textStatus, jqXHR){
+                if(data.success){
+
+                    $("#ajaxResponse").html("");
+                    $("#ajaxResponse").append( setItemTable(data) );
+                }
+                else{
+                    $("#ajaxResponse").html("<div><b>item is invalid!</b></div>");
+                    $(this).removeClass('active');
+                }
+            }
+        })
+        $(this).addClass('active');
+    });
+} );
+
+
+/*function calculateDebitAmount(transactionAmount, numberOfPayments){
     return (transactionAmount/numberOfPayments).toFixed(3);
 }
 
@@ -121,7 +180,7 @@ function calculateAdditionalPayments(date, numberOfPayments){
     var todayMonth = today.getMonth();
 
     return numberOfPayments - Math.abs(todayMonth - transactionMonth);
-}
+}*/
 
 // $(function () {
 //     var $orders = $('#orders');

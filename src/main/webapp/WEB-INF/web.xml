@@ -22,4 +22,16 @@
         <servlet-name>ItemInformation</servlet-name>
         <url-pattern>/ItemInformation</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <description>Get Information about Country - jQuery Ajax Request</description>
+        <display-name>OnLoad</display-name>
+        <servlet-name>OnLoad</servlet-name>
+        <servlet-class>com.as400samplecode.OnLoad</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OnLoad</servlet-name>
+        <url-pattern>/OnLoad</url-pattern>
+    </servlet-mapping>
+
 </web-app>

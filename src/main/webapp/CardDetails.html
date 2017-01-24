@@ -15,17 +15,18 @@
 </head>
 <body>
 <form id = "card-form">
-        <table id = "input-table">
+        <table id = "input-table" >
              <tr class = "test">
-                <th class = "input"><label for = "dateCode" >date:</label></th>
-                <th class = "input"><label for = "itemCode"> store:</label></th>
-                <th class = "input"><label for = "transaction_amount" class="number"> transaction amount:</label></th>
-                 <th class = "input"><label for = "number_of_payments" class="number">number of payments:</label></th>
+                <th><label for = "purchase_date" >purchase_date:</label></th>
+                <th><label for = "itemCode"> store:</label></th>
+                <th><label for = "transaction_amount" class="number"> transaction amount:</label></th>
+                 <th><label for = "number_of_payments" class="number">number of payments:</label></th>
+                 <th><label for = "card_name" >card name:</label></th>
             </tr>
 
             <tr>
                 <td class = "input">
-                    <input id = "dateCode"  type = "date" name = "dateCode"/>
+                    <input id = "purchase_date"  type = "date" name = "purchase_date"/>
                 </td>
                 <td class = "input">
                     <input id = "itemCode" type = "text" name = "itemCode"/>
@@ -35,13 +36,84 @@
                 </td>
                 <td class = "input"  >
                 <input id = "number_of_payments" class = number type = "text" name = "number_of_payments"/>
+                </td>
+                <td calss = "input">
+                    <select id = "card_name">
+                        <option value="isracard">Isracard</option>
+                        <option value="leumi card">Leumi Card</option>
+                        <option value="lifestile">LifeStile</option>
+                    </select>
+                </td>
 
             </tr>
         </table>
     <p>
         <input id = "add-button" type = "button" value = "Submit"/>
     </p>
+
+    <div class="tab-panels" >
+        <ul class = "tabs">
+            <li rel = "ajaxResponse" class = "active">Isracard</li>
+            <li rel = "ajaxResponse" >Leumi Card</li>
+            <li rel = "ajaxResponse" >LifeStile</li>
+            <li rel = "ajaxResponse" >panel4</li>
+        </ul>
+    </div>
+<!--    <div id="panel1" class="panel active">
+        content1<br/>
+        content1<br/>
+        content1<br/>
+        content1<br/>
+        content1<br/>
+    </div>
+    <div id="panel2" class="panel">
+        content2<br/>
+        content2<br/>
+        content2<br/>
+        content2<br/>
+        content2<br/>
+    </div>
+    <div id="panel3" class="panel">
+        content3<br/>
+        content3<br/>
+        content3<br/>
+        content3<br/>
+        content3<br/>
+    </div>
+    <div id="panel4" class="panel">
+        content4<br/>
+        content4<br/>
+        content4<br/>
+        content4<br/>
+        content4<br/>
+    </div>-->
+<!--    <ul class ="tab">
+        <li><a href="javascript:void(0)" class="tablinks" onclick="tableOnClick('Isracard')">Isracard </a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="tableOnClick('LeumiCard')">Leumi Card</a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="tableOnClick('Lifestile')">Lifestile</a></li>
+    </ul>-->
+
+<!--    <div class = "tab-panels">
+        <ul class ="tabs">
+            <li><a href="#ajaxResponse" class = "active">Isracard </a></li>
+            <li><a href="#ajaxResponse1"  >Leumi Card</a></li>
+            <li><a href="#ajaxResponse2"  >Lifestile</a></li>
+        </ul>
+    </div>-->
+
+
+
+
+
 </form>
-<div id = "ajaxResponse" ></div>
+<div id = "ajaxResponse" >
+    <p>ajaxResponse</p>
+</div>
+<div id = "ajaxResponse1" >
+    <p>ajaxResponse1</p>
+</div>
+<div id = "ajaxResponse2" >
+    <p>ajaxResponse2</p>
+</div>
 </body>
 </html>

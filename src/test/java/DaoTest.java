@@ -25,7 +25,7 @@ public class DaoTest {
         List<Item> itemsStrings =  DBUtils.getAllItems();
 
         for(Item item : itemsStrings){
-            System.out.println(item.getDate());
+            System.out.println(item.getPurchase_date());
             System.out.println(item.getStore());
             System.out.println(item.getTransaction_amount());
             System.out.println(item.getNumber_of_payments());

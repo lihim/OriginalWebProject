@@ -33,8 +33,9 @@ public class ItemInformation extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
-            List<Item> allItems = DBUtils.getAllItems();
+            List<Item> allItems = DBUtils.getAllItemsByCardName(request.getQueryString());
             Gson gson = new Gson();
             String json = gson.toJson(allItems);
             JsonObject myObj = new JsonObject();
@@ -61,23 +62,14 @@ public class ItemInformation extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String date = request.getParameter("dateCode");
+        String date = request.getParameter("purchase_date");
         String store = request.getParameter("itemCode");
         String transection_amount = request.getParameter("transaction_amount");
         String numberOfPayments = request.getParameter("number_of_payments");
-        //java.util.Date dateConvertor = null;
+        String cardName = request.getParameter("card_name");
 
-//        try {
-//            dateConvertor = formatter.parse(date);
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        Item item = new Item(date, store, transection_amount, numberOfPayments, cardName);
 
-        Item item = new Item(date, store, transection_amount, numberOfPayments);
-
-      //  PrintWriter out = response.getWriter();
         try {
             DBUtils.insertIntoItems(item);
 
