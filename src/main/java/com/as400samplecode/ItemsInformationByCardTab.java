@@ -23,12 +23,12 @@ import java.util.*;
 /**
  * Created by lihi martin on 1/1/2017.
  */
-@WebServlet(name = "ItemInformation", urlPatterns = {"/ItemInformation"})
-public class ItemInformation extends HttpServlet {
+@WebServlet(name = "ItemsInformationByCardTab")
+public class ItemsInformationByCardTab extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    public ItemInformation() {
+    public ItemsInformationByCardTab() {
         super();
     }
 

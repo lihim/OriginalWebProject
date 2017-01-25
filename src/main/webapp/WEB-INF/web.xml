@@ -14,13 +14,13 @@
         </welcome-file-list>
     <servlet>
         <description>Get Information about Country - jQuery Ajax Request</description>
-        <display-name>ItemInformation</display-name>
-        <servlet-name>ItemInformation</servlet-name>
-        <servlet-class>com.as400samplecode.ItemInformation</servlet-class>
+        <display-name>ItemsInformationByCardTab</display-name>
+        <servlet-name>ItemsInformationByCardTab</servlet-name>
+        <servlet-class>com.as400samplecode.ItemsInformationByCardTab</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ItemInformation</servlet-name>
-        <url-pattern>/ItemInformation</url-pattern>
+        <servlet-name>ItemsInformationByCardTab</servlet-name>
+        <url-pattern>/ItemsInformationByCardTab</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -32,6 +32,17 @@
     <servlet-mapping>
         <servlet-name>OnLoad</servlet-name>
         <url-pattern>/OnLoad</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <description>Get Information about Country - jQuery Ajax Request</description>
+        <display-name>ItemsInformation</display-name>
+        <servlet-name>ItemsInformation</servlet-name>
+        <servlet-class>com.as400samplecode.ItemsInformation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemsInformation</servlet-name>
+        <url-pattern>/ItemsInformation</url-pattern>
     </servlet-mapping>
 
 </web-app>
