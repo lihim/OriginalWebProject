@@ -18,22 +18,23 @@ import java.util.List;
 @WebServlet(name = "ItemsInformation")
 public class ItemsInformation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        DBUtils dbUtils = new DBUtils();
         String date = request.getParameter("purchase_date");
         String store = request.getParameter("itemCode");
         String transection_amount = request.getParameter("transaction_amount");
-        String numberOfPayments = request.getParameter("number_of_payments");
+        int numberOfPayments = Integer.parseInt(request.getParameter("number_of_payments"));
         String cardName = request.getParameter("card_name");
 
         Item item = new Item(date, store, transection_amount, numberOfPayments, cardName);
 
         try {
-            DBUtils.insertIntoItems(item);
+            dbUtils.insertIntoItems(item);
 
         } catch (Exception e) {
             e.printStackTrace();
 
         }
-        List<Item> itemsList = DBUtils.getAllItemsByCardName(item.getCard_name());
+        List<Item> itemsList = dbUtils.getAllItemsByCardName(item.getCard_name());
 
         Gson gson = new Gson();
         String json = gson.toJson(itemsList);

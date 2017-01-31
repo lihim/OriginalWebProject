@@ -26,16 +26,16 @@ import java.util.*;
 @WebServlet(name = "ItemsInformationByCardTab")
 public class ItemsInformationByCardTab extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+    private final long serialVersionUID = 1L;
 
     public ItemsInformationByCardTab() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        DBUtils dbUtils = new DBUtils();
         try {
-            List<Item> allItems = DBUtils.getAllItemsByCardName(request.getQueryString());
+            List<Item> allItems = dbUtils.getAllItemsByCardName(request.getParameter("card_name"));
             Gson gson = new Gson();
             String json = gson.toJson(allItems);
             JsonObject myObj = new JsonObject();
@@ -61,23 +61,24 @@ public class ItemsInformationByCardTab extends HttpServlet {
      * @throws IOException
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+/*
+        DBUtils dbUtils = new DBUtils();
         String date = request.getParameter("purchase_date");
         String store = request.getParameter("itemCode");
         String transection_amount = request.getParameter("transaction_amount");
-        String numberOfPayments = request.getParameter("number_of_payments");
+        int numberOfPayments = Integer.parseInt(request.getParameter("number_of_payments"));
         String cardName = request.getParameter("card_name");
 
         Item item = new Item(date, store, transection_amount, numberOfPayments, cardName);
 
         try {
-            DBUtils.insertIntoItems(item);
+            dbUtils.insertIntoItems(item);
 
         } catch (Exception e) {
             e.printStackTrace();
 
         }
-        List<Item> itemsList = DBUtils.getAllItems();
+        List<Item> itemsList = dbUtils.getAllItems();
 
         Gson gson = new Gson();
         String json = gson.toJson(itemsList);
@@ -88,6 +89,7 @@ public class ItemsInformationByCardTab extends HttpServlet {
         myObj.add("itemsInfo", jsonItems);
 
         response.getWriter().print(myObj.toString());
+*/
 
     }
 }

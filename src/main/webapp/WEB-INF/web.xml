@@ -45,4 +45,15 @@
         <url-pattern>/ItemsInformation</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <description>Get Information about Country - jQuery Ajax Request</description>
+        <display-name>ItemsInformationByDate</display-name>
+        <servlet-name>ItemsInformationByDate</servlet-name>
+        <servlet-class>com.as400samplecode.ItemsInformationByDate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemsInformationByDate</servlet-name>
+        <url-pattern>/ItemsInformationByDate</url-pattern>
+    </servlet-mapping>
+
 </web-app>

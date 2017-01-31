@@ -13,19 +13,19 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by lihi martin on 1/24/2017.
+ * Created by lihi martin on 1/27/2017.
  */
-@WebServlet(name = "OnLoad")
-public class OnLoad extends HttpServlet {
+@WebServlet(name = "ItemsInformationByDate")
+public class ItemsInformationByDate extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DBUtils dbUtils = new DBUtils();
+        dbUtils.updateDatabase();
         try {
-            List<Item> allItems = dbUtils.getAllItemsByCardName("Isracard");
+            List<Item> allItems = dbUtils.getAllItemsByCardNameandDate(request.getParameter("card_name"), request.getParameter("todayDate"));
             Gson gson = new Gson();
             String json = gson.toJson(allItems);
             JsonObject myObj = new JsonObject();
@@ -40,5 +40,6 @@ public class OnLoad extends HttpServlet {
             e.printStackTrace();
 
         }
+
     }
 }

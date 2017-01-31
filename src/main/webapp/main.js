@@ -1,3 +1,10 @@
+var dateToTest = "2016-06-12";
+
+$(document).ready(function(){
+    var date = new Date();
+    //$(".date-of-today").append(getDate());
+    $(".date-of-today").append(dateToTest);
+});
 
 function updateSubmit(){
     if ($('#purchase_date').val().length>0 &&$(' #itemCode').val().length>0 &&
@@ -17,26 +24,33 @@ $(document).ready(function (){
     });
 });
 
+
 //get all the data from mysql and show it when page is loaded
 $(document).ready(function() {
+
+    var dataString = {
+        todayDate: getDate(),
+        card_name : "Isracard"
+
+    }
     $.ajax({
-        type:"GET",
-        url: "ItemsInformationByCardTab",
-        data:"Isracard",
+        type: "GET",
+        url: "ItemsInformationByDate",
+        data: dataString,
         dataType: "json",
-        success: function(data, textStatus, jqXHR){
-            if(data.success){
+        success: function (data, textStatus, jqXHR) {
+            if (data.success) {
                 setItemTable(data);
             }
-            else{
+            else {
                 $("#card-table").html("<div><b>item is invalid!</b></div>");
                 $(this).removeClass('active');
             }
         }
     })
     $(this).addClass('active');
-
 });
+
 
 
 $(document).ready(function(){
@@ -48,11 +62,12 @@ $(document).ready(function(){
     $("#add-button").click(function(e){
 
        var item = {
+           todayDate: getDate(),
            purchase_date : $("input#purchase_date").val(),
-           itemCode : $("input#itemCode").val(),
-           transaction_amount : $("input#transaction_amount").val(),
+           itemCode : $('input#itemCode').val(),
+           transaction_amount : $('input#transaction_amount').val(),
            number_of_payments : $("input#number_of_payments").val(),
-           card_name : $("#card_name option:selected").text()
+           card_name : $("#card_name").find("option:selected").text()
         }
 
        $.ajax({
@@ -70,6 +85,7 @@ $(document).ready(function(){
                else{
                    $("#card-table").html("<div><b>item is invalid!</b></div>");
                }
+               return item.purchase_date;
            },
 
            error: function(jqXHR, textStatus, errorThrown){
@@ -91,9 +107,51 @@ $(document).ready(function(){
            }
 
        })
+
     });
+
 });
 
+$(document).ready(function() {
+   var monthes = [
+        "January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December"
+    ];
+    var date = new Date();
+    $(".this-month").append("</br>" + monthes[date.getMonth()]);
+    $(".next-month").append("</br>" +monthes[date.getMonth() +1]);
+    $(".third-month").append("</br>" +monthes[date.getMonth()+2]);
+
+});
+
+function getDate(){
+    var monthes = [
+        "January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December"
+    ];
+    var date = new Date();
+    var today = "";
+    today += (date.getFullYear() +"-" );
+    if(date.getMonth() < 10){
+        today +="0";
+    }
+    today += (date.getMonth()+1 +"-" );
+
+    if(date.getDate() < 10){
+        today +="0";
+    }
+    today += (date.getDay() );
+
+    //return today;
+    return dateToTest;
+
+
+
+};
 function setItemTable(data) {
     var txt = "";
     txt =   "<tr><th class = 'table-header date'>Date</th>" +
@@ -112,8 +170,10 @@ function setItemTable(data) {
         txt += "<td class = 'item-cell payments'>" + data.itemsInfo[i].number_of_payments + "</td>";
         txt += "<td class = 'item-cell debit'>" + data.itemsInfo[i].debit_amount +"</td>";
         txt += "<td class = 'item-cell additional'>" + data.itemsInfo[i].additional_payments +"</td>";
-        txt += "<td class = 'delete-cell'><a href='#'> <span class='glyphicon glyphicon-trash' ></span> </a></td></tr>";
-   }
+        txt += "<td class = 'edit-cell'><a href='#'> <span class='glyphicon glyphicon-trash' ></span> </a></td>";
+        txt += "<td class = 'delete-cell'><a href='#'> <span class='glyphicon glyphicon-edit' ></span> </a></td></tr>";
+
+    }
     $(".tablebody").html("");
     $(".tablebody").append(txt);
 
@@ -125,8 +185,8 @@ function setItemTable(data) {
 
 
 $( function() {
-    $('.tab-panels .tabs li ').click('tabsselected', function(){
-        $('.tab-panels .tabs li.active').removeClass('active');
+    $('.tab-panels .tabs li ').click('tubsselected', function(){
+        $("this.active").removeClass('active');
 
         $.ajax({
             type:"GET",
@@ -147,3 +207,25 @@ $( function() {
     });
 } );
 
+$(function() {
+    $('.top-bar .month-nav li').click('tubsselected', function () {
+        $("this.active").removeClass('active');
+
+        $.ajax({
+            type: "GET",
+            url: "ItemsInformationByDate",
+            data: getDate(),
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                if (data.success) {
+                    setItemTable(data);
+                }
+                else {
+                    $("#card-table").html("<div><b>item is invalid!</b></div>");
+                    $(this).removeClass('active');
+                }
+            }
+        })
+        $(this).addClass('active');
+    });
+});

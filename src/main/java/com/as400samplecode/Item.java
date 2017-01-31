@@ -8,15 +8,15 @@ public class Item {
     private String purchase_date;
     private String store;
     private String transaction_amount;
-    private String number_of_payments;
+    private int number_of_payments;
     private String debit_amount;
-    private String additional_payments;
+    private int additional_payments;
     private String card_name;
       // Date String purchase_date;
 
 
 
-    Item(String purchase_date, String store, String transaction_amount, String number_of_payments, String debit_amount, String additional_payments, String card_name){
+    Item(String purchase_date, String store, String transaction_amount, int number_of_payments, String debit_amount, int additional_payments, String card_name){
         this.purchase_date = purchase_date;
         this.store = store;
         this.transaction_amount = transaction_amount;
@@ -27,13 +27,13 @@ public class Item {
 //;
     }
 
-    Item(String purchase_date, String store, String transaction_amount, String number_of_payments, String card_name){
+    Item(String purchase_date, String store, String transaction_amount, int number_of_payments, String card_name){
         this.purchase_date = purchase_date;
         this.store = store;
         this.transaction_amount = transaction_amount;
         this.number_of_payments = number_of_payments;
         this.debit_amount = null;
-        this.additional_payments = null;
+        this.additional_payments = 0;
         this.card_name = card_name;
 //;
     }
@@ -55,11 +55,11 @@ public class Item {
         this.debit_amount = debit_amount;
     }
 
-    public String getAdditional_payments() {
+    public int getAdditional_payments() {
         return additional_payments;
     }
 
-    public void setAdditional_payments(String additional_payments) {
+    public void setAdditional_payments(int additional_payments) {
         this.additional_payments = additional_payments;
     }
 
@@ -87,11 +87,11 @@ public class Item {
         this.transaction_amount = transaction_amount;
     }
 
-    public String getNumber_of_payments() {
+    public int getNumber_of_payments() {
         return number_of_payments;
     }
 
-    public void setNumber_of_payments(String number_of_payments) {
+    public void setNumber_of_payments(int number_of_payments) {
         this.number_of_payments = number_of_payments;
     }
 

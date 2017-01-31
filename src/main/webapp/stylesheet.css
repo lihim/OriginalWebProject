@@ -1,10 +1,96 @@
 .main-page{
     margin-left: 10px;
+    padding: 10px;
+    margin: 10px;
 }
 
-#input-table{
-    margin-bottom: 10px;
+#container{
+    background-color: lightsteelblue;
+
+    margin: 10px;
 }
+table{
+    width:100%;
+    margin-bottom: 10px;
+
+}
+th, td{
+    width: 25%;
+}
+
+/** START top bar **/
+.top-bar ul{
+    background: #5f5f5f;
+
+}
+
+.top-bar ul li{
+    list-style-type: none;
+    display:  inline-block;
+    font-size: 20px;
+    color: #f1f1f1;
+    padding: 4px 10px;
+    margin: 0;
+    font-weight: 300;
+}
+
+.top-bar ul li:hover{
+    background: black;
+}
+
+.top-bar ul li.active{
+    background: black;
+}
+/** END top bar **/
+
+.insert-card{
+    width: 80%;
+}
+
+/** START month balance table **/
+#month-balance{
+    width: 100%;
+    padding:10px;
+}
+
+.result-view{
+    width: 80%;
+    margin:10px;
+}
+
+/*.test{
+    position: fixed;
+    left: 20px;
+}*/
+.right-nav{
+    display: flex;
+    width: 20%;
+    background-color: burlywood;
+}
+
+.right-nav div button{
+
+    display: block;
+    float: none;
+}
+
+/** END month balance table **/
+.thead-month-balance-table{
+    border : 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    display: table;
+}
+
+
+
+
+
+
+
+/*#input-table{
+    margin-bottom: 10px;
+}*/
 
 .table-header{
     border : 1px solid black;
@@ -16,7 +102,7 @@
 }
 
 .card-details-table{
-    table-layout: fixed;
+width:100%;
 }
 
 th.table-header{
@@ -27,12 +113,10 @@ td.item-cell{
     border : 1px solid black;
     border-collapse: collapse;
     text-align: left;
-    padding-left: 10px;
-    padding-right: 10px;
     background-color: #CCCCCC;
 }
 
-.delete-cell{
+.delete-cell, .edit-cell{
 
     border-right:none;
     border-top:none;
@@ -44,9 +128,10 @@ i.glyphicon.glyphicon-trash {
     font-size: 12px;
 }
 
-td.input{
+/*td.input{
     width:50px;
-}
+}*/
+
 
 
 .tab-panels ul{
@@ -87,6 +172,14 @@ td.input{
 .tab-panels .panel.active{
     display: block;
 }
+
+
+button{
+    float: left;
+}
+
+
+
 
 /*#card-details-table, thead, tbody{
     border : 1px solid black;
